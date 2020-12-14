@@ -1,0 +1,62 @@
+ <script> 
+  var store = window.localStorage;
+  var portiswltaddr,RemixContract,walletMnemonic,wallet,walletPrivateKey ;
+  const portis = new Portis('169229c9-bfb8-4caf-adb2-8494887b8b7d', "maticMumbai");
+  const web3 = new Web3(portis.provider);
+  mnemonic = "0";
+  portis.showPortis();
+  var abi = [ 
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_Address",
+				"type": "address"
+			},
+			{
+				"name": "_best",
+				"type": "uint256"
+			}
+		],
+		"name": "setBest",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_Address",
+				"type": "address"
+			}
+		],
+		"name": "getBest",
+		"outputs": [
+			{
+				"name": "best",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+ ]
+    
+    var cntradd = '0x0B28a5c4436aBbCB5E62b9EfCecf8C4f5466843f'
+
+    
+    //https://rpc-mumbai.matic.today
+    /*
+    let currentProvider = new web3.providers.HttpProvider('http://localhost:8545');
+    let web3Provider = new ethers.providers.Web3Provider(currentProvider);
+    */ 
+
+   // var provider = new ethers.providers.InfuraProvider("rinkeby", '023e22764cb642ad964efa7d8d404f3e');
+
+    //var wallet = walletMnemonic.connect(portis.provider);
+    
+    let currentProvider = new web3.providers.HttpProvider('https://rpc-mumbai.matic.today');
+    let provider = new ethers.providers.Web3Provider(currentProvider);
