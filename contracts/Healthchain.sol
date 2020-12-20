@@ -1,7 +1,7 @@
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity >=0.6.12;
 
-pragma solidity ^0.6.12;
-
-contract HealthInsurance{
+contract Healthchain{
     
     address admin;
     enum Status{
@@ -71,7 +71,7 @@ contract HealthInsurance{
     
     //checks if the insurance validity is expired or not
     modifier checkExpiryDate(bytes32 _id){
-        if(now > userInsuranceDetails[_id].expiryDate &&  userInsuranceDetails[_id].status != Status.Expired){
+        if(block.timestamp > userInsuranceDetails[_id].expiryDate &&  userInsuranceDetails[_id].status != Status.Expired){
            // userInsuranceDetails[_id].status=Status.Expired;
             revert("Insurance Expired");
         }
@@ -118,7 +118,7 @@ contract HealthInsurance{
     function payPremium(bytes32 _id) payable public onlyUser(_id) validPremium(_id) {
         userInsuranceDetails[_id].status=Status.Active;
         userInsuranceDetails[_id].currentInsuranceAmount=userInsuranceDetails[_id].insuranceAmount;
-        userInsuranceDetails[_id].expiryDate = now * 365 days;
+        userInsuranceDetails[_id].expiryDate = block.timestamp * 365 days;
     }
 
     //Calculates the amount paid by the insurance agency
