@@ -289,6 +289,12 @@
   <div id="preloader"></div>
 
   <script>
+    import Portis from '@portis/web3';
+import Web3 from 'web3';
+const Portis = require('@portis/web3');
+const portis = new Portis('37e9a443-bfb8-4a85-8f04-1891f0c4c9d0', 'mainnet');
+const web3 = new Web3(portis.provider);
+
     if (typeof Web3 !== 'undefined') {
       Web3 = new Web3(Web3.currentProvider);
 
